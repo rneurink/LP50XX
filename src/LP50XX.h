@@ -7,6 +7,15 @@
 #define DEFAULT_ADDRESS 0x14
 #define BROADCAST_ADDRESS 0x0C
 
+enum LED_Configuration {
+    RGB,
+    GRB,
+    BGR,
+    RBG,
+    GBR,
+    BRG,
+};
+
 enum LP50XX_LEDS {
     LED_0 = 1,
     LED_1 = 2,
@@ -62,7 +71,9 @@ class LP50XX
 {
     public:
         LP50XX(void); // Constructor
-        LP50XX(uint8_t enable_pin); // Constructor with enable pin
+        LP50XX(LED_Configuration ledConfiguration); // Constructor with a specific led configuration
+        LP50XX(uint8_t enablePin); // Constructor with enable pin
+        LP50XX(LED_Configuration ledConfiguration, uint8_t enablePin); // Constructor with a specific led configuration and an enable pin
 
         /**
          * Initialisation functions
@@ -82,6 +93,10 @@ class LP50XX
         void SetMaxCurrentOption(uint8_t option);
         void SetGlobalLedOff(uint8_t value);
 
+        void SetEnablePin(uint8_t enablePin);
+        void SetLEDConfiguration(LED_Configuration ledConfiguration);
+        void SetI2CAddress(uint8_t address);
+
         /**
          * Bank control functions
          */
@@ -90,20 +105,28 @@ class LP50XX
         void SetBankColorA(uint8_t value);
         void SetBankColorB(uint8_t value);
         void SetBankColorC(uint8_t value);
+        void SetBankColor(uint8_t red, uint8_t green, uint8_t blue);
 
         /**
          * Output control functions
          */
         void SetLEDBrightness(uint8_t led, uint8_t brighness);
         void SetOutputColor(uint8_t output, uint8_t value);
+        void SetLEDColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue);
 
-        void Test();
+
+        /**
+         * Low level functions
+         */
+        void WriteRegister(uint8_t reg, uint8_t value);
+        void ReadRegister(uint8_t reg, uint8_t *value);
 
     protected:
 
     private:
         uint8_t     _i2c_address;
         uint8_t     _enable_pin = 0xFF;
+        LED_Configuration     _led_configuration = RGB;
 };
 
 #endif

@@ -12,15 +12,41 @@ LP50XX::LP50XX() {
 }
 
 /**
+ * @brief This function instantiates the class object with a specific LED configuration
+ * 
+ * @param ledConfiguration 
+ */
+LP50XX::LP50XX(LED_Configuration ledConfiguration) {
+    _led_configuration = ledConfiguration;
+
+    LP50XX();
+}
+
+/**
  * @brief This function instantiates the class object with an enable pin
  * 
- * @param enable_pin 
+ * @param enablePin 
  */
-LP50XX::LP50XX(uint8_t enable_pin) {
-    LP50XX();
+LP50XX::LP50XX(uint8_t enablePin) {
+    pinMode(enablePin, OUTPUT);
+    _enable_pin = enablePin;
 
-    pinMode(enable_pin, OUTPUT);
-    _enable_pin = enable_pin;
+    LP50XX();
+}
+
+/**
+ * @brief This function instantiates the class object with a specific LED configuration and with an enable pin
+ * 
+ * @param ledConfiguration 
+ * @param enablePin 
+ */
+LP50XX::LP50XX(LED_Configuration ledConfiguration, uint8_t enablePin) {
+    _led_configuration = ledConfiguration;
+    
+    pinMode(enablePin, OUTPUT);
+    _enable_pin = enablePin;
+
+    LP50XX();
 }
 
 /**
@@ -148,6 +174,20 @@ void LP50XX::SetGlobalLedOff(uint8_t value) {
 }
 
 
+void LP50XX::SetEnablePin(uint8_t enablePin) {
+    pinMode(enablePin, OUTPUT);
+    _enable_pin = enablePin;
+}
+
+void LP50XX::SetLEDConfiguration(LED_Configuration ledConfiguration) {
+    _led_configuration = ledConfiguration;
+}
+
+void LP50XX::SetI2CAddress(uint8_t address) {
+    _i2c_address = address;
+}
+
+
 /*----------------------- Bank control functions ----------------------------*/
 
 /**
@@ -180,6 +220,47 @@ void LP50XX::SetBankColorC(uint8_t value) {
     i2c_write_byte(_i2c_address, BANK_C_COLOR, value);
 }
 
+void LP50XX::SetBankColor(uint8_t red, uint8_t green, uint8_t blue) {
+    SetAutoIncrement(AUTO_INC_ON);
+
+    uint8_t buff[3];
+    switch (_led_configuration)
+    {
+    case RGB:
+        buff[0] = red;
+        buff[1] = green;
+        buff[2] = blue;
+        break;
+    case GRB:
+        buff[0] = green;
+        buff[1] = red;
+        buff[2] = blue;
+        break;
+    case BGR:
+        buff[0] = blue;
+        buff[1] = green;
+        buff[2] = red;
+        break;
+    case RBG:
+        buff[0] = red;
+        buff[1] = blue;
+        buff[2] = green;
+        break;
+    case GBR:
+        buff[0] = green;
+        buff[1] = blue;
+        buff[2] = red;
+        break;
+    case BRG:
+        buff[0] = blue;
+        buff[1] = red;
+        buff[2] = green;
+        break;
+    }
+
+    i2c_write_multi(_i2c_address, BANK_A_COLOR, buff, 3);
+}
+
 
 /*----------------------- Output control functions --------------------------*/
 
@@ -191,12 +272,53 @@ void LP50XX::SetOutputColor(uint8_t output, uint8_t value) {
     i2c_write_byte(_i2c_address, OUT0_COLOR + output, value);
 }
 
+void LP50XX::SetLEDColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue) {
+    SetAutoIncrement(AUTO_INC_ON);
+
+    uint8_t buff[3];
+    switch (_led_configuration)
+    {
+    case RGB:
+        buff[0] = red;
+        buff[1] = green;
+        buff[2] = blue;
+        break;
+    case GRB:
+        buff[0] = green;
+        buff[1] = red;
+        buff[2] = blue;
+        break;
+    case BGR:
+        buff[0] = blue;
+        buff[1] = green;
+        buff[2] = red;
+        break;
+    case RBG:
+        buff[0] = red;
+        buff[1] = blue;
+        buff[2] = green;
+        break;
+    case GBR:
+        buff[0] = green;
+        buff[1] = blue;
+        buff[2] = red;
+        break;
+    case BRG:
+        buff[0] = blue;
+        buff[1] = red;
+        buff[2] = green;
+        break;
+    }
+
+    i2c_write_multi(_i2c_address, OUT0_COLOR + (led * 3), buff, 3);
+}
 
 
-void LP50XX::Test() {
-    uint8_t buffer[3];
-    buffer[2] = 0x40;
-    buffer[1] = 0x00;
-    buffer[0] = 0xff;
-    i2c_write_multi(_i2c_address, OUT6_COLOR, buffer, 3);
+/*----------------------- Low level functions -------------------------------*/
+
+void LP50XX::WriteRegister(uint8_t reg, uint8_t value) {
+    i2c_write_byte(_i2c_address, reg, value);
+}
+void LP50XX::ReadRegister(uint8_t reg, uint8_t *value) {
+    i2c_read_byte(_i2c_address, reg, value);
 }
