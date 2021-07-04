@@ -91,9 +91,10 @@ void LP50XX::Reset() {
 /**
  * @brief Resets the registers to their original values
  * 
+ * @param addressType the I2C address type to write to 
  */
-void LP50XX::ResetRegisters() {
-    i2c_write_byte(_i2c_address, RESET_REGISTERS, 0xFF);
+void LP50XX::ResetRegisters(EAddressType addressType) {
+    i2c_write_byte(getAddress(addressType), RESET_REGISTERS, 0xFF);
 }
 
 
@@ -102,12 +103,13 @@ void LP50XX::ResetRegisters() {
 /**
  * @brief Configures the device according to the configuration param
  * 
- * @param configuration The configuration of the device, this can be made by bitwise OR ('|') the enum @ref LP50XX_Configuration
- * 
  * @note A configuration can be `Configure(LED_GLOBAL_ON | MAX_CURRENT_25mA | PWM_DITHERING_ON | AUTO_INC_ON | POWER_SAVE_ON | LOG_SCALE_ON);`
+ * 
+ * @param configuration The configuration of the device, this can be made by bitwise OR ('|') the enum @ref LP50XX_Configuration
+ * @param addressType the I2C address type to write to 
  */
-void LP50XX::Configure(uint8_t configuration) {
-    i2c_write_byte(_i2c_address, DEVICE_CONFIG1, configuration & 0x3F);
+void LP50XX::Configure(uint8_t configuration, EAddressType addressType) {
+    i2c_write_byte(getAddress(addressType), DEVICE_CONFIG1, configuration & 0x3F);
 }
 
 /**
@@ -254,47 +256,52 @@ void LP50XX::SetI2CAddress(uint8_t address) {
  * @brief Enables or Disables BANK control for specific LEDs
  * 
  * @param leds The LEDs to include in BANK control. See @ref LP50XX_LEDS
+ * @param addressType the I2C address type to write to
  * 
  * @note Code example could be `SetBankControl(LED_0 | LED_1 | LED_2 | LED_3);`
  */
-void LP50XX::SetBankControl(uint8_t leds) {
-    i2c_write_byte(_i2c_address, LED_CONFIG0, leds);
+void LP50XX::SetBankControl(uint8_t leds, EAddressType addressType) {
+    i2c_write_byte(getAddress(addressType), LED_CONFIG0, leds);
 }
 
 /**
  * @brief Sets the brightness level of the whole BANK
  * 
  * @param brightness The brightness level from 0 to 0xFF
+ * @param addressType the I2C address type to write to
  */
-void LP50XX::SetBankBrightness(uint8_t brightness) {
-    i2c_write_byte(_i2c_address, BANK_BRIGHTNESS, brightness);
+void LP50XX::SetBankBrightness(uint8_t brightness, EAddressType addressType) {
+    i2c_write_byte(getAddress(addressType), BANK_BRIGHTNESS, brightness);
 }
 
 /**
  * @brief Sets BANK color A related to Output 0,3,6,9
  * 
  * @param value The color value from 0 to 0xFF
+ * @param addressType the I2C address type to write to
  */
-void LP50XX::SetBankColorA(uint8_t value) {
-    i2c_write_byte(_i2c_address, BANK_A_COLOR, value);
+void LP50XX::SetBankColorA(uint8_t value, EAddressType addressType) {
+    i2c_write_byte(getAddress(addressType), BANK_A_COLOR, value);
 }
 
 /**
  * @brief Sets BANK color B related to Output 1,4,7,10
  * 
  * @param value The color value from 0 to 0xFF
+ * @param addressType the I2C address type to write to
  */
-void LP50XX::SetBankColorB(uint8_t value) {
-    i2c_write_byte(_i2c_address, BANK_B_COLOR, value);
+void LP50XX::SetBankColorB(uint8_t value, EAddressType addressType) {
+    i2c_write_byte(getAddress(addressType), BANK_B_COLOR, value);
 }
 
 /**
  * @brief Sets BANK color C related to Output 2,5,8,11
  * 
  * @param value The color value from 0 to 0xFF
+ * @param addressType the I2C address type to write to
  */
-void LP50XX::SetBankColorC(uint8_t value) {
-    i2c_write_byte(_i2c_address, BANK_C_COLOR, value);
+void LP50XX::SetBankColorC(uint8_t value, EAddressType addressType) {
+    i2c_write_byte(getAddress(addressType), BANK_C_COLOR, value);
 }
 
 /**
@@ -303,8 +310,9 @@ void LP50XX::SetBankColorC(uint8_t value) {
  * @param red The red color value from 0 to 0xFF
  * @param green The green color value from 0 to 0xFF
  * @param blue The blue color value from 0 to 0xFF
+ * @param addressType the I2C address type to write to
  */
-void LP50XX::SetBankColor(uint8_t red, uint8_t green, uint8_t blue) {
+void LP50XX::SetBankColor(uint8_t red, uint8_t green, uint8_t blue, EAddressType addressType) {
     SetAutoIncrement(AUTO_INC_ON);
 
     uint8_t buff[3];
@@ -342,7 +350,7 @@ void LP50XX::SetBankColor(uint8_t red, uint8_t green, uint8_t blue) {
         break;
     }
 
-    i2c_write_multi(_i2c_address, BANK_A_COLOR, buff, 3);
+    i2c_write_multi(getAddress(addressType), BANK_A_COLOR, buff, 3);
 }
 
 
@@ -353,9 +361,10 @@ void LP50XX::SetBankColor(uint8_t red, uint8_t green, uint8_t blue) {
  * 
  * @param led The led to set. 0..3
  * @param brighness The brightness level from 0 to 0xFF
+ * @param addressType the I2C address type to write to
  */
-void LP50XX::SetLEDBrightness(uint8_t led, uint8_t brighness) {
-    i2c_write_byte(_i2c_address, LED0_BRIGHTNESS + led, brighness);
+void LP50XX::SetLEDBrightness(uint8_t led, uint8_t brighness, EAddressType addressType) {
+    i2c_write_byte(getAddress(addressType), LED0_BRIGHTNESS + led, brighness);
 }
 
 /**
@@ -363,9 +372,10 @@ void LP50XX::SetLEDBrightness(uint8_t led, uint8_t brighness) {
  * 
  * @param output The output to set. 0..11
  * @param value The color value from 0 to 0xFF
+ * @param addressType the I2C address type to write to
  */
-void LP50XX::SetOutputColor(uint8_t output, uint8_t value) {
-    i2c_write_byte(_i2c_address, OUT0_COLOR + output, value);
+void LP50XX::SetOutputColor(uint8_t output, uint8_t value, EAddressType addressType) {
+    i2c_write_byte(getAddress(addressType), OUT0_COLOR + output, value);
 }
 
 /**
@@ -375,8 +385,9 @@ void LP50XX::SetOutputColor(uint8_t output, uint8_t value) {
  * @param red The red color value from 0 to 0xFF
  * @param green The green color value from 0 to 0xFF
  * @param blue The blue color value from 0 to 0xFF
+ * @param addressType the I2C address type to write to
  */
-void LP50XX::SetLEDColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue) {
+void LP50XX::SetLEDColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue, EAddressType addressType) {
     SetAutoIncrement(AUTO_INC_ON);
 
     uint8_t buff[3];
@@ -414,7 +425,7 @@ void LP50XX::SetLEDColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue) 
         break;
     }
 
-    i2c_write_multi(_i2c_address, OUT0_COLOR + (led * 3), buff, 3);
+    i2c_write_multi(getAddress(addressType), OUT0_COLOR + (led * 3), buff, 3);
 }
 
 
@@ -425,9 +436,10 @@ void LP50XX::SetLEDColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue) 
  * 
  * @param reg The register to write to
  * @param value The value to write to the register
+ * @param addressType the I2C address type to write to
  */
-void LP50XX::WriteRegister(uint8_t reg, uint8_t value) {
-    i2c_write_byte(_i2c_address, reg, value);
+void LP50XX::WriteRegister(uint8_t reg, uint8_t value, EAddressType addressType) {
+    i2c_write_byte(getAddress(addressType), reg, value);
 }
 
 /**
@@ -438,4 +450,31 @@ void LP50XX::WriteRegister(uint8_t reg, uint8_t value) {
  */
 void LP50XX::ReadRegister(uint8_t reg, uint8_t *value) {
     i2c_read_byte(_i2c_address, reg, value);
+}
+
+/*------------------------- Helper functions --------------------------------*/
+
+/*
+ *  PRIVATE
+ */ 
+
+/**
+ * @brief Resolves the EAddressType into an address
+ * 
+ * @param addressType the I2C address type to write to. This translates to the stored addresses in the class
+ * @return uint8_t the I2C address translated from the addressType
+ */
+uint8_t LP50XX::getAddress(EAddressType addressType) {
+    uint8_t i2c_address;
+    switch (addressType)
+    {
+    case EAddressType::Broadcast:
+        i2c_address = _i2c_address_broadcast;
+        break;
+    case EAddressType::Normal:
+    default:
+    i2c_address = _i2c_address;
+        break;
+    }
+    return i2c_address;
 }

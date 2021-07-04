@@ -38,6 +38,11 @@ enum LP50XX_Configuration {
     LOG_SCALE_ON = 1 << 5
 };
 
+enum EAddressType {
+    Normal,
+    Broadcast
+};
+
 // Register definitions
 #define DEVICE_CONFIG0 0x00     // Chip_EN
 #define DEVICE_CONFIG1 0x01     // Configurations for Log_scale, Power_save, Auto_inc, PWM_dithering, Max_current_option and LED_Global_off
@@ -80,12 +85,12 @@ class LP50XX
          */
         void Begin(uint8_t i2c_address = DEFAULT_ADDRESS); // Initialize the driver
         void Reset();
-        void ResetRegisters();
+        void ResetRegisters(EAddressType addressType = EAddressType::Normal);
 
         /**
          * Configuration functions
          */
-        void Configure(uint8_t configuration);
+        void Configure(uint8_t configuration, EAddressType addressType = EAddressType::Normal);
         void SetScaling(uint8_t scaling);
         void SetPowerSaving(uint8_t powerSave);
         void SetAutoIncrement(uint8_t autoInc);
@@ -100,33 +105,36 @@ class LP50XX
         /**
          * Bank control functions
          */
-        void SetBankControl(uint8_t leds);
-        void SetBankBrightness(uint8_t brightness);
-        void SetBankColorA(uint8_t value);
-        void SetBankColorB(uint8_t value);
-        void SetBankColorC(uint8_t value);
-        void SetBankColor(uint8_t red, uint8_t green, uint8_t blue);
+        void SetBankControl(uint8_t leds, EAddressType addressType = EAddressType::Normal);
+        void SetBankBrightness(uint8_t brightness, EAddressType addressType = EAddressType::Normal);
+        void SetBankColorA(uint8_t value, EAddressType addressType = EAddressType::Normal);
+        void SetBankColorB(uint8_t value, EAddressType addressType = EAddressType::Normal);
+        void SetBankColorC(uint8_t value, EAddressType addressType = EAddressType::Normal);
+        void SetBankColor(uint8_t red, uint8_t green, uint8_t blue, EAddressType addressType = EAddressType::Normal);
 
         /**
          * Output control functions
          */
-        void SetLEDBrightness(uint8_t led, uint8_t brighness);
-        void SetOutputColor(uint8_t output, uint8_t value);
-        void SetLEDColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue);
+        void SetLEDBrightness(uint8_t led, uint8_t brighness, EAddressType addressType = EAddressType::Normal);
+        void SetOutputColor(uint8_t output, uint8_t value, EAddressType addressType = EAddressType::Normal);
+        void SetLEDColor(uint8_t led, uint8_t red, uint8_t green, uint8_t blue, EAddressType addressType = EAddressType::Normal);
 
 
         /**
          * Low level functions
          */
-        void WriteRegister(uint8_t reg, uint8_t value);
+        void WriteRegister(uint8_t reg, uint8_t value, EAddressType addressType = EAddressType::Normal);
         void ReadRegister(uint8_t reg, uint8_t *value);
 
     protected:
 
     private:
         uint8_t     _i2c_address;
+        uint8_t     _i2c_address_broadcast = BROADCAST_ADDRESS;
         uint8_t     _enable_pin = 0xFF;
         LED_Configuration     _led_configuration = RGB;
+
+        uint8_t getAddress(EAddressType addressType);
 };
 
 #endif
