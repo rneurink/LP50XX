@@ -7,5 +7,6 @@ var searchData=
   ['begin_6',['Begin',['../classLP50XX.html#a9376daeb637d145f1da860de5e1f0d5b',1,'LP50XX']]],
   ['bgr_7',['BGR',['../LP50XX_8h.html#a4748d6a5b957c2214edd098c043a5726a4a19a93c929964c201e01c8352dc8b9c',1,'LP50XX.h']]],
   ['brg_8',['BRG',['../LP50XX_8h.html#a4748d6a5b957c2214edd098c043a5726aa23d02d9d56089f1419a6c2eee27d16f',1,'LP50XX.h']]],
-  ['broadcast_5faddress_9',['BROADCAST_ADDRESS',['../LP50XX_8h.html#a294b587d460b14170d2ce3f4da9083ce',1,'LP50XX.h']]]
+  ['broadcast_9',['Broadcast',['../LP50XX_8h.html#a766aadc4147ea9009b1945e34ac2fd89aaaf54bd761f51092012aa8c90af5b750',1,'LP50XX.h']]],
+  ['broadcast_5faddress_10',['BROADCAST_ADDRESS',['../LP50XX_8h.html#a294b587d460b14170d2ce3f4da9083ce',1,'LP50XX.h']]]
 ];

@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['rbg_143',['RBG',['../LP50XX_8h.html#a4748d6a5b957c2214edd098c043a5726ac6df59182dbf95476bd74527b6785a1d',1,'LP50XX.h']]],
-  ['rgb_144',['RGB',['../LP50XX_8h.html#a4748d6a5b957c2214edd098c043a5726a30447e9f6efa4afdd251f9afc1d5fb44',1,'LP50XX.h']]]
+  ['power_5fsave_5foff_145',['POWER_SAVE_OFF',['../LP50XX_8h.html#aec6016d56547dd71c7ab2fcb8315899da72be9eecd7398f66ff3a6fc8c39caede',1,'LP50XX.h']]],
+  ['power_5fsave_5fon_146',['POWER_SAVE_ON',['../LP50XX_8h.html#aec6016d56547dd71c7ab2fcb8315899dafa656480f2bb131a0e816f61f69e36ab',1,'LP50XX.h']]],
+  ['pwm_5fdithering_5foff_147',['PWM_DITHERING_OFF',['../LP50XX_8h.html#aec6016d56547dd71c7ab2fcb8315899daca3e9cc48afc798d6db2bc0094fa3afe',1,'LP50XX.h']]],
+  ['pwm_5fdithering_5fon_148',['PWM_DITHERING_ON',['../LP50XX_8h.html#aec6016d56547dd71c7ab2fcb8315899daaf334a7fbd7b669338fa7ca263f6289f',1,'LP50XX.h']]]
 ];

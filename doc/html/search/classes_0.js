@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lp50xx_85',['LP50XX',['../classLP50XX.html',1,'']]]
+  ['lp50xx_88',['LP50XX',['../classLP50XX.html',1,'']]]
 ];

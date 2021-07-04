@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['setautoincrement_69',['SetAutoIncrement',['../classLP50XX.html#ae7af3782ad7d2fbf2fb1e1eef34a003a',1,'LP50XX']]],
+  ['setbankbrightness_70',['SetBankBrightness',['../classLP50XX.html#ac5428e4c0f04bec410b87ae2bba61009',1,'LP50XX']]],
+  ['setbankcolor_71',['SetBankColor',['../classLP50XX.html#a3cbc08b89a8127199233b7c4840a9b62',1,'LP50XX']]],
+  ['setbankcolora_72',['SetBankColorA',['../classLP50XX.html#a0fe2a85a7f7fa4706fb1765f2c1fea4e',1,'LP50XX']]],
+  ['setbankcolorb_73',['SetBankColorB',['../classLP50XX.html#af5cc0302ac9b4d62ce9e5e1dd621ab10',1,'LP50XX']]],
+  ['setbankcolorc_74',['SetBankColorC',['../classLP50XX.html#ab03e5a83b8e7f03ccc08459021a38f1a',1,'LP50XX']]],
+  ['setbankcontrol_75',['SetBankControl',['../classLP50XX.html#ab679f227e28720b1fcda9c71329d8c1c',1,'LP50XX']]],
+  ['setenablepin_76',['SetEnablePin',['../classLP50XX.html#a60ec654d8076f9436a5b8addc3bfa110',1,'LP50XX']]],
+  ['setgloballedoff_77',['SetGlobalLedOff',['../classLP50XX.html#a6f6f7974c435f2b555d31dae1bd56a2a',1,'LP50XX']]],
+  ['seti2caddress_78',['SetI2CAddress',['../classLP50XX.html#ae9a5715f5063ab7f52c5ceebb9dcc32d',1,'LP50XX']]],
+  ['setledbrightness_79',['SetLEDBrightness',['../classLP50XX.html#adaa157777467af877c798fa31446bd56',1,'LP50XX']]],
+  ['setledcolor_80',['SetLEDColor',['../classLP50XX.html#ab6446bab468788d4ee920aa06b927e7b',1,'LP50XX']]],
+  ['setledconfiguration_81',['SetLEDConfiguration',['../classLP50XX.html#ac82375530847538514b86da9bd14b4c8',1,'LP50XX']]],
+  ['setmaxcurrentoption_82',['SetMaxCurrentOption',['../classLP50XX.html#a342491a90abdc1859ee400db43694656',1,'LP50XX']]],
+  ['setoutputcolor_83',['SetOutputColor',['../classLP50XX.html#ab07a120d2ee2defa9b56c5c5eb5331a9',1,'LP50XX']]],
+  ['setpowersaving_84',['SetPowerSaving',['../classLP50XX.html#a197864575fa2db6070f7155aefd23b06',1,'LP50XX']]],
+  ['setpwmdithering_85',['SetPWMDithering',['../classLP50XX.html#a70cc86399ad663172e9869fa20171bb9',1,'LP50XX']]],
+  ['setscaling_86',['SetScaling',['../classLP50XX.html#a87058c73bfe85606473b4d172169f969',1,'LP50XX']]]
+];

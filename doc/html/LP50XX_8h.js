@@ -27,6 +27,10 @@ var LP50XX_8h =
     [ "OUT8_COLOR", "LP50XX_8h.html#a3e0452eca0b793c45c1586bbbe6dc8ad", null ],
     [ "OUT9_COLOR", "LP50XX_8h.html#ad8ecf566d5147d0feda8373b6ceb0490", null ],
     [ "RESET_REGISTERS", "LP50XX_8h.html#a9335de6247cbcf7315afd50f0bfa0277", null ],
+    [ "EAddressType", "LP50XX_8h.html#a766aadc4147ea9009b1945e34ac2fd89", [
+      [ "Normal", "LP50XX_8h.html#a766aadc4147ea9009b1945e34ac2fd89a5ecbcf0afce98b042f35ec71ba03fa4b", null ],
+      [ "Broadcast", "LP50XX_8h.html#a766aadc4147ea9009b1945e34ac2fd89aaaf54bd761f51092012aa8c90af5b750", null ]
+    ] ],
     [ "LED_Configuration", "LP50XX_8h.html#a4748d6a5b957c2214edd098c043a5726", [
       [ "RGB", "LP50XX_8h.html#a4748d6a5b957c2214edd098c043a5726a30447e9f6efa4afdd251f9afc1d5fb44", null ],
       [ "GRB", "LP50XX_8h.html#a4748d6a5b957c2214edd098c043a5726aa94cf1760393e10a753b8edba4ca1c98", null ],

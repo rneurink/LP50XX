@@ -1,4 +1,13 @@
-
+/**
+ * @file LP50XX.cpp
+ * @author rneurink (ruben.neurink@gmail.com)
+ * @brief 
+ * @version 1.0
+ * @date 2021-07-04
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 #include "LP50XX.h"
 #include "I2C_coms.h"
 
