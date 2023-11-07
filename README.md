@@ -25,6 +25,7 @@ Currently there are no cheap eval boards available.
 
 Breakout boards:
 * [TI LP5012EVM Eval board](https://www.ti.com/tool/LP5012EVM)
+* [Xortech LP5012 I2C -> LED PWM](https://www.tindie.com/products/xortech/lp5012-i2c-to-12-led-pwms/)
 
 If more breakout boards are available please inform me to update the list.
 
